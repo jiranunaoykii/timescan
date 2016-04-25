@@ -1,0 +1,13 @@
+20/3/2559 20:31:09	This log contains information about the import operation of the script 'TimeScannerDB.edmx.sql' into project 'TimeScanerDB' on computer 'E-EXAM' by user'EExam.
+20/3/2559 20:31:09	Started importing file: E:\Project\TimeScanner\TimeScanner.DSA\EF\TimeScannerDB.edmx.sql 
+20/3/2559 20:31:09	File name E:\Project\TimeScanner\TimeScanner.DSA\EF\TimeScannerDB.edmx.sql (size: 4718)
+20/3/2559 20:31:09	Parsing import script
+20/3/2559 20:31:09	Total number of batches in script: 22
+20/3/2559 20:31:09	Total number of statements in script: 12
+20/3/2559 20:31:09	The script was successfully imported into the project.
+20/3/2559 20:31:09	Analyzing schema objects...
+20/3/2559 20:31:09	Scanning project for duplicate elements
+20/3/2559 20:31:09	Finished duplicate element processing
+20/3/2559 20:31:09	In the script that you provided to the import operation, one or more statements were not fully understood. These statements were moved to the ScriptsIgnoredOnImport.sql file. Review the file contents for additional information.
+20/3/2559 20:31:09	A summary of the import was saved to the following location: E:\Project\TimeScanner\TimeScanerDB\Import Script Logs\TimeScannerDB_edmx_s_20160320013109.log
+20/3/2559 20:31:09	Click Finish to continue...

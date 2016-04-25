@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="51d40e953a5a41068528c0fbe2523796" Name="Diagram1" >
+        <EntityTypeShape EntityType="TimeScannerDB.TimeScan" Width="1.5" PointX="0.5" PointY="1.125" />
+        <EntityTypeShape EntityType="TimeScannerDB.Absence" Width="1.5" PointX="4.5" PointY="0.875" />
+        <EntityTypeShape EntityType="TimeScannerDB.Calendar" Width="1.5" PointX="6.5" PointY="0.875" />
+        <EntityTypeShape EntityType="TimeScannerDB.Employee" Width="1.5" PointX="2.5" PointY="0.875" />
+        <AssociationConnector Association="TimeScannerDB.EmployeeTimeScan" />
+        <AssociationConnector Association="TimeScannerDB.EmployeeAbsence" />
+        <EntityTypeShape EntityType="TimeScannerDB.TempEmployee" Width="1.5" PointX="7.625" PointY="4.5" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

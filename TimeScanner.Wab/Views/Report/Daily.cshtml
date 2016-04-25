@@ -1,0 +1,74 @@
+﻿@model IEnumerable<TimeScanner.DSA.EF.Employee>
+
+@{
+    ViewBag.Title = "Daily";
+}
+
+<h2>Daily</h2>
+
+<form method="post">
+    <select name="day" class="form-control">
+        @for (int i = 1; i <= 31; i++)
+        {
+            @Html.Raw("<option>" + i + "</option>")
+        }
+    </select>
+    <select name="month" class="form-control">
+        @for (int i = 1; i <= 12; i++)
+        {
+            @Html.Raw("<option value='" + i + "'>" + new DateTime(DateTime.Now.Year, i, 1).ToString("MMMM", System.Globalization.CultureInfo.GetCultureInfo("th-TH")) + "</option>")
+        }
+    </select>
+    <select name="year" class="form-control">
+        @for (int i = DateTime.Now.Year + 543; i > DateTime.Now.Year + 523; i--)
+        {
+            @Html.Raw("<option>" + i + "</option>")
+        }
+    </select>
+    <input type="submit" class="btn btn-primary" />
+</form>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.EmployeeCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FullName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TimeScan.TimeIn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TimeScan.TimeOut)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Position)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmployeeCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TimeScan.TimeIn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TimeScan.TimeOut)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Position)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Monthly", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>

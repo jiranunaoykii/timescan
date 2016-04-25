@@ -1,0 +1,147 @@
+﻿@model TimeScanner.DSA.EF.Absence
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Absence</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.AbsenceDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <select name="day" class="form-control">
+                    @for (int i = 1; i <= 31; i++)
+                    {
+                        @Html.Raw("<option " + (Model.AbsenceDate.Day == i ? "selected" : "") + ">" + i + "</option>")
+                    }
+                </select>
+                <select name="month" class="form-control">
+                    @for (int i = 1; i <= 12; i++)
+                    {
+                        @Html.Raw("<option " + (Model.AbsenceDate.Month == i ? "selected" : "") + " value='" + i + "'>" + new DateTime(DateTime.Now.Year, i, 1).ToString("MMMM", System.Globalization.CultureInfo.GetCultureInfo("th-TH")) + "</option>")
+                    }
+                </select>
+                <select name="year" class="form-control">
+                    @for (int i = DateTime.Now.Year + 543; i > DateTime.Now.Year + 523; i--)
+                    {
+                        @Html.Raw("<option " + (Model.AbsenceDate.Year == i ? "selected" : "") + ">" + i + "</option>")
+                    }
+                </select>
+                @*@Html.EditorFor(model => model.AbsenceDate, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.AbsenceDate, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Document, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" class="form-control" name="document" />
+                @*@Html.EditorFor(model => model.Document, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Document, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Remark, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Remark, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Remark, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.EmployeeId, "EmployeeId", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" id="employeeName" class="form-control" value="@ViewBag.Name" />
+                @Html.HiddenFor(model => model.EmployeeId)
+                <div class="btn btn-primary btn-lg" data-toggle="modal" data-target=".modalSave">เลือก</div>
+                <div class="modal fade modalSave" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-sm">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <table class="table">
+                                    <tr>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Employees.First().EmployeeCode)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Employees.First().PID)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Employees.First().TitleName)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Employees.First().Position)
+                                        </th>
+                                        <th></th>
+                                    </tr>
+
+                                    @foreach (var item in Model.Employees)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.EmployeeCode)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.PID)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.TitleName)
+                                                @Html.DisplayFor(modelItem => item.FirstName)
+                                                @Html.DisplayFor(modelItem => item.LastName)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Position)
+                                            </td>
+                                            <td>
+                                                <input type="button" value="เลือก" class="btn btn-primary btn-sm" onclick="selectEmployee(@item.Id,'@(item.TitleName + item.FirstName + " " + item.LastName)')" />
+                                            </td>
+                                        </tr>
+                                    }
+
+                                </table>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default btn-lg" data-dismiss="modal">ยกเลิก</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <script>
+                    function selectEmployee(id, name) {
+                        $('#EmployeeId').val(id);
+                        $('#employeeName').val(name);
+                        $('.modalSave').modal('toggle');
+                    }
+                </script>
+                @*@Html.DropDownList("EmployeeId", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.EmployeeId, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
