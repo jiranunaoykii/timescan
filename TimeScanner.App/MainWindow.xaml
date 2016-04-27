@@ -7,10 +7,10 @@
         xmlns:EF="clr-namespace:TimeScanner.DSA.EF;assembly=TimeScanner.DSA" x:Class="TimeScanner.App.MainWindow"
         mc:Ignorable="d"
         Title="MainWindow" Height="745.875" Width="702.461">
-    <Grid Margin="0,0,-6,69" RenderTransformOrigin="0.279,0.231">
-        <Grid.Background>
-            <ImageBrush/>
-        </Grid.Background>
+    <Window.Background>
+        <ImageBrush ImageSource="Untitled-3.jpg"/>
+    </Window.Background>
+    <Grid Margin="0.016,0,-6.016,0" RenderTransformOrigin="0.279,0.231">
         <Grid.RenderTransform>
             <TransformGroup>
                 <ScaleTransform/>
