@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 04/11/2016 22:49:17
--- Generated from EDMX file: C:\Users\BugLord\Desktop\Project\TimeScanner\TimeScanner.DSA\EF\TimeScannerDB.edmx
+-- Date Created: 04/26/2016 22:48:43
+-- Generated from EDMX file: C:\Users\joker\Documents\Git\timescan\TimeScanner.DSA\EF\TimeScannerDB.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -72,8 +72,10 @@ CREATE TABLE [dbo].[CalendarSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [IssueDate] datetime  NOT NULL,
     [Activity] nvarchar(max)  NOT NULL,
+    [Note] nvarchar(max)  NULL,
     [StartTime] datetime  NOT NULL,
-    [EndTime] datetime  NOT NULL
+    [EndTime] datetime  NOT NULL,
+    [IsWorkingDay] bit  NOT NULL
 );
 GO
 

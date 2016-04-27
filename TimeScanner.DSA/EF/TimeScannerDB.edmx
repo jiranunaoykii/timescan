@@ -46,8 +46,10 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="IssueDate" Type="datetime" Nullable="false" />
     <Property Name="Activity" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Note" Type="nvarchar(max)" Nullable="true" />
     <Property Name="StartTime" Type="datetime" Nullable="false" />
     <Property Name="EndTime" Type="datetime" Nullable="false" />
+    <Property Name="IsWorkingDay" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="EmployeeSet">
     <Key>
@@ -145,8 +147,10 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IssueDate" Type="DateTime" Nullable="false" />
           <Property Name="Activity" Type="String" Nullable="false" />
+          <Property Name="Note" Type="String" Nullable="true" />
           <Property Name="StartTime" Type="DateTime" Nullable="false" />
           <Property Name="EndTime" Type="DateTime" Nullable="false" />
+          <Property Name="IsWorkingDay" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
@@ -232,8 +236,10 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="IssueDate" ColumnName="IssueDate" />
           <ScalarProperty Name="Activity" ColumnName="Activity" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
           <ScalarProperty Name="StartTime" ColumnName="StartTime" />
           <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+          <ScalarProperty Name="IsWorkingDay" ColumnName="IsWorkingDay" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

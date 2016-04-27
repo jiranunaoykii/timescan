@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
-  <asmv1:assemblyIdentity name="TimeScanner.ClickOnce.exe" version="1.0.0.28" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
+  <asmv1:assemblyIdentity name="TimeScanner.ClickOnce.exe" version="1.0.0.29" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
   <application />
   <entryPoint>
     <assemblyIdentity name="TimeScanner.ClickOnce" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
@@ -337,31 +337,31 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>wlpE0HPALxnP0VfyKqRhsQsfwMrFrKWbqYTquzqbag4=</dsig:DigestValue>
+        <dsig:DigestValue>56b6xjDfBYmjPj98L2x9ry7aqBA6qhENvcMI9aGLQWs=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="TimeScanner.DSA.dll" size="28160">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="TimeScanner.DSA.dll" size="28672">
       <assemblyIdentity name="TimeScanner.DSA" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>ri3c0Fho9+liY1oTa4fO3GlvLvU55cJ9aadEXrrPk0k=</dsig:DigestValue>
+        <dsig:DigestValue>PbsiBFxx+upqgSrPmxzT0EcTg5qBG4WbcWCGGi8ckVc=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="TimeScanner.Wab.dll" size="77312">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="TimeScanner.Wab.dll" size="77824">
       <assemblyIdentity name="TimeScanner.Wab" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>y9IdS9faemHK63IzaUcbcSRo3qcpN/FObhEZooy6mAo=</dsig:DigestValue>
+        <dsig:DigestValue>+AzqgXapd+DEZ3JQT3yvCL/qtr4K16HpRMPJcNTOJSE=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

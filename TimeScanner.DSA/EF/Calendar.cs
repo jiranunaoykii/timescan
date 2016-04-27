@@ -17,7 +17,9 @@ namespace TimeScanner.DSA.EF
         public int Id { get; set; }
         public System.DateTime IssueDate { get; set; }
         public string Activity { get; set; }
+        public string Note { get; set; }
         public System.DateTime StartTime { get; set; }
         public System.DateTime EndTime { get; set; }
+        public bool IsWorkingDay { get; set; }
     }
 }

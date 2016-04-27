@@ -32,3 +32,12 @@ C:\Users\AOYKII\Desktop\project\Project\TimeScanner\TimeScanerDB\bin\Debug\TimeS
 C:\Users\AOYKII\Desktop\project\Project\TimeScanner\TimeScanerDB\bin\Debug\TimeScanerDB.pdb
 C:\Users\AOYKII\Desktop\project\Project\TimeScanner\TimeScanerDB\obj\Debug\TimeScanerDB.dll
 C:\Users\AOYKII\Desktop\project\Project\TimeScanner\TimeScanerDB\obj\Debug\TimeScanerDB.pdb
+C:\Users\joker\Documents\Git\timescan\TimeScanerDB\bin\Debug\TimeScanerDB.dacpac
+C:\Users\joker\Documents\Git\timescan\TimeScanerDB\bin\Debug\TimeScanerDB.dll
+C:\Users\joker\Documents\Git\timescan\TimeScanerDB\bin\Debug\TimeScanerDB.pdb
+C:\Users\joker\Documents\Git\timescan\TimeScanerDB\obj\Debug\TimeScanerDB.dll
+C:\Users\joker\Documents\Git\timescan\TimeScanerDB\obj\Debug\TimeScanerDB.pdb
+C:\Users\joker\Documents\Git\timescan\TimeScanerDB\obj\Debug\Model.xml
+C:\Users\joker\Documents\Git\timescan\TimeScanerDB\obj\Debug\refactor.xml
+C:\Users\joker\Documents\Git\timescan\TimeScanerDB\obj\Debug\postdeploy.sql
+C:\Users\joker\Documents\Git\timescan\TimeScanerDB\obj\Debug\predeploy.sql

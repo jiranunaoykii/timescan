@@ -1,4 +1,6 @@
 ﻿-- Creating table 'EmployeeSet'
+-- Creating table 'EmployeeSet'
+-- Creating table 'EmployeeSet'
 CREATE TABLE [dbo].[EmployeeSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [EmployeeCode] nvarchar(max)  NOT NULL,
@@ -11,6 +13,8 @@ CREATE TABLE [dbo].[EmployeeSet] (
     [Tel] nvarchar(max)  NULL
 );
 GO
+-- Creating primary key on [Id] in table 'EmployeeSet'
+-- Creating primary key on [Id] in table 'EmployeeSet'
 -- Creating primary key on [Id] in table 'EmployeeSet'
 ALTER TABLE [dbo].[EmployeeSet]
 ADD CONSTRAINT [PK_EmployeeSet]

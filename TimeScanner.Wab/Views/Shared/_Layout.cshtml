@@ -6,7 +6,47 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <style type="text/css">
+        .calendar table {
+            border: 1px solid #999;
+            border-collapse: collapse;
+        }
 
+        .calendar th {
+            border: 1px solid #999;
+        }
+
+        .calendar td {
+            border: 1px solid #999;
+            height: 5em;
+            width: 5em;
+            padding: 5px;
+            vertical-align: top;
+        }
+
+        caption {
+            font-size: 300%;
+            font-style: italic;
+        }
+
+        .day {
+            text-align: right;
+        }
+
+        .notes {
+            font-size: 80%;
+            text-align: right;
+            padding-left: 20px;
+        }
+
+        .birthday {
+            background-color: #ECE;
+        }
+
+        .weekend {
+            background-color: #F3F3F3;
+        }
+    </style>
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -17,16 +57,15 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("TimeScan Management", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("หน้าแรก", "Index", "Home")</li>
                     <li>@Html.ActionLink("จัดการพนักงาน", "Index", "Employees")</li>
                     <li>@Html.ActionLink("บันทึกการลา", "", "Absences")</li>
                     <li>@Html.ActionLink("รายงาน", "", "Report")</li>
-                    <li>@Html.ActionLink("ปฏิทิน", "", "Home")</li>
-
+                    <li>@Html.ActionLink("ปฏิทิน", "Index", "Calendars", new { id = string.Format("{0:dd-MM-yyyy}", DateTime.Now) }, null)</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -43,5 +82,13 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+
+       <script>
+           $(function () {
+               var d = new Date();
+               var toDay = d.getDate() + '/' + (d.getMonth() + 1) + '/' + (d.getFullYear() + 543);
+               $(".datepicker").datepicker({ dateFormat: 'dd/mm/yy', isBuddhist: true, defaultDate: toDay, inline: true });
+           });
+       </script>
 </body>
 </html>

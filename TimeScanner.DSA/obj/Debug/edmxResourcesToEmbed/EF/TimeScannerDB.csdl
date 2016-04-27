@@ -43,8 +43,10 @@
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="IssueDate" Type="DateTime" Nullable="false" />
     <Property Name="Activity" Type="String" Nullable="false" />
+    <Property Name="Note" Type="String" Nullable="true" />
     <Property Name="StartTime" Type="DateTime" Nullable="false" />
     <Property Name="EndTime" Type="DateTime" Nullable="false" />
+    <Property Name="IsWorkingDay" Type="Boolean" Nullable="false" />
   </EntityType>
   <EntityType Name="Employee">
     <Key>

@@ -1,0 +1,90 @@
+﻿@model TimeScanner.Wab.ViewModels.Calendars
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<br />
+<p>
+    @Html.ActionLink("อัพเดท", "Create", null, new { @class="btn btn-info pull-right"})
+</p>
+<br />
+<br />
+<center><h1>@Html.ActionLink("<", "Index", "Calendars", new { id = string.Format("{0:dd-MM-yyyy}", Model.PreviuosMonth) }, new { @class = "btn btn-default" }) @Model.MonthName @Html.ActionLink(">", "Index", "Calendars", new { id = string.Format("{0:dd-MM-yyyy}", Model.NextMonth) }, new { @class = "btn btn-default" })</h1></center>
+<table class="calendar table">
+    <tr>
+        <th>อาทิตย์</th>
+        <th>จันทร์</th>
+        <th>อังคาร</th>
+        <th>พุทธ</th>
+        <th>พฤหัสบดี</th>
+        <th>ศุกร์</th>
+        <th>เสาร์</th>
+    </tr>
+        @{
+            int count = 1;
+            foreach (var date in Model.Days)
+            {
+                string boxcolor =  date.IsWorkingDay ? "blue" : "red";
+                boxcolor = date.IsActivity ? boxcolor : "white";
+                string note = date.IsActivity ? date.Note : string.Empty;
+                if (count == 0)
+                {
+                    @:<tr>
+                }
+                if (date.IsDayInMonth)
+                {
+                    @:<td style="background-color:@boxcolor"><div class="day">@date.Date.Day</div><br /><div>@note</div></td>
+                    }
+                else {
+                    @:<td style="background-color:@boxcolor; color:gray"><div class="day">@date.Date.Day</div><br /><div>@note</div></td>
+                    }
+                
+                if ((count % 7) == 0){ 
+                    @:</tr><tr>
+                }
+                count++;
+            }
+        }
+</table>
+
+@*<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IssueDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Activity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StartTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EndTime)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IssueDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Activity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StartTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EndTime)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>*@

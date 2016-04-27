@@ -41,8 +41,10 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="IssueDate" Type="datetime" Nullable="false" />
     <Property Name="Activity" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Note" Type="nvarchar(max)" Nullable="true" />
     <Property Name="StartTime" Type="datetime" Nullable="false" />
     <Property Name="EndTime" Type="datetime" Nullable="false" />
+    <Property Name="IsWorkingDay" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="EmployeeSet">
     <Key>

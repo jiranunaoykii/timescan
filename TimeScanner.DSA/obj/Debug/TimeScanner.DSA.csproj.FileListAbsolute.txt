@@ -46,3 +46,13 @@ C:\Users\AOYKII\Desktop\project\Project\TimeScanner\TimeScanner.DSA\bin\Debug\En
 C:\Users\AOYKII\Desktop\project\Project\TimeScanner\TimeScanner.DSA\obj\Debug\TimeScanner.DSA.csprojResolveAssemblyReference.cache
 C:\Users\AOYKII\Desktop\project\Project\TimeScanner\TimeScanner.DSA\obj\Debug\TimeScanner.DSA.dll
 C:\Users\AOYKII\Desktop\project\Project\TimeScanner\TimeScanner.DSA\obj\Debug\TimeScanner.DSA.pdb
+C:\Users\joker\Documents\Git\timescan\TimeScanner.DSA\bin\Debug\TimeScanner.DSA.dll.config
+C:\Users\joker\Documents\Git\timescan\TimeScanner.DSA\bin\Debug\TimeScanner.DSA.dll
+C:\Users\joker\Documents\Git\timescan\TimeScanner.DSA\bin\Debug\TimeScanner.DSA.pdb
+C:\Users\joker\Documents\Git\timescan\TimeScanner.DSA\bin\Debug\EntityFramework.dll
+C:\Users\joker\Documents\Git\timescan\TimeScanner.DSA\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\joker\Documents\Git\timescan\TimeScanner.DSA\bin\Debug\EntityFramework.xml
+C:\Users\joker\Documents\Git\timescan\TimeScanner.DSA\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\joker\Documents\Git\timescan\TimeScanner.DSA\obj\Debug\TimeScanner.DSA.csprojResolveAssemblyReference.cache
+C:\Users\joker\Documents\Git\timescan\TimeScanner.DSA\obj\Debug\TimeScanner.DSA.dll
+C:\Users\joker\Documents\Git\timescan\TimeScanner.DSA\obj\Debug\TimeScanner.DSA.pdb

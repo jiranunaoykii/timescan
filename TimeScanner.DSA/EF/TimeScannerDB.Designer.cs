@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\AOYKII\Desktop\Project\Project\TimeScanner\TimeScanner.DSA\EF\TimeScannerDB.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\joker\Documents\Git\timescan\TimeScanner.DSA\EF\TimeScannerDB.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

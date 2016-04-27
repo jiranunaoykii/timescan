@@ -28,8 +28,10 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="IssueDate" ColumnName="IssueDate" />
           <ScalarProperty Name="Activity" ColumnName="Activity" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
           <ScalarProperty Name="StartTime" ColumnName="StartTime" />
           <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+          <ScalarProperty Name="IsWorkingDay" ColumnName="IsWorkingDay" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
