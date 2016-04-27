@@ -17,6 +17,7 @@ namespace TimeScanner.Wab.ViewModels
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public System.DateTime IssueDate { get; set; }
 
+        [DisplayName("กิจกรรม")]
         public string Activity { get; set; }
 
         [DisplayName("หมายเหตุ")]
@@ -30,6 +31,7 @@ namespace TimeScanner.Wab.ViewModels
         [DisplayFormat(DataFormatString = "{0:HH:mm}", ApplyFormatInEditMode = true)]
         public System.DateTime EndTime { get; set; }
 
+        [DisplayName("การทำงาน")]
         public string IsWorkingDay { get; set; }
     }
 }

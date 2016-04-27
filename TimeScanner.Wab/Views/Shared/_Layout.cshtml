@@ -24,26 +24,26 @@
             vertical-align: top;
         }
 
-        caption {
+        .calendar caption {
             font-size: 300%;
             font-style: italic;
         }
 
-        .day {
+        .calendar .day {
             text-align: right;
         }
 
-        .notes {
+        .calendar .notes {
             font-size: 80%;
             text-align: right;
             padding-left: 20px;
         }
 
-        .birthday {
+        .calendar .birthday {
             background-color: #ECE;
         }
 
-        .weekend {
+        .calendar .weekend {
             background-color: #F3F3F3;
         }
     </style>
@@ -61,10 +61,13 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("หน้าแรก", "Index", "Home")</li>
-                    <li>@Html.ActionLink("จัดการพนักงาน", "Index", "Employees")</li>
-                    <li>@Html.ActionLink("บันทึกการลา", "", "Absences")</li>
-                    <li>@Html.ActionLink("รายงาน", "", "Report")</li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink("หน้าแรก", "Index", "Home")</li>
+                        <li>@Html.ActionLink("จัดการพนักงาน", "Index", "Employees")</li>
+                        <li>@Html.ActionLink("บันทึกการลา", "", "Absences")</li>
+                        <li>@Html.ActionLink("รายงาน", "", "Report")</li>
+                    }                   
                     <li>@Html.ActionLink("ปฏิทิน", "Index", "Calendars", new { id = string.Format("{0:dd-MM-yyyy}", DateTime.Now) }, null)</li>
                 </ul>
                 @Html.Partial("_LoginPartial")

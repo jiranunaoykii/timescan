@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using TimeScanner.DSA.EF;
+using TimeScanner.Wab.Helpers;
 
 namespace TimeScanner.Wab.Controllers
 {
@@ -35,7 +36,7 @@ namespace TimeScanner.Wab.Controllers
         [HttpPost]
         public ActionResult Daily(int day, int month, int year)
         {
-            var date = new DateTime(year - 543, month, day);
+            var date = DateHelper.GetDate(new DateTime(year, month, day));
             var employeeSet = db.EmployeeSet;
             foreach (var item in employeeSet)
             {

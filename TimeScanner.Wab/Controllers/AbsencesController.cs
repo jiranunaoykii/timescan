@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using TimeScanner.DSA.EF;
+using TimeScanner.Wab.Helpers;
 
 namespace TimeScanner.Wab.Controllers
 {
@@ -25,7 +26,7 @@ namespace TimeScanner.Wab.Controllers
         [HttpPost]
         public ActionResult Index(int day, int month, int year)
         {
-            var date = new DateTime(year - 543, month, day);
+            var date = DateHelper.GetDate(new DateTime(year, month, day));
             var absenceSet = db.AbsenceSet.ToList().Where(x => x.AbsenceDate.Date == date);
             return View(absenceSet.ToList());
         }
@@ -69,7 +70,7 @@ namespace TimeScanner.Wab.Controllers
                     document.SaveAs(System.IO.Path.Combine(@"C:\inetpub\wwwroot\Documents", System.IO.Path.GetFileName(document.FileName)));
                     absence.Document = System.IO.Path.GetFileName(document.FileName);
                 }
-                absence.AbsenceDate = new DateTime(year - 543, month, day);
+                absence.AbsenceDate = DateHelper.GetDate(new DateTime(year, month, day));
 
                 db.AbsenceSet.Add(absence);
                 db.SaveChanges();
@@ -119,7 +120,7 @@ namespace TimeScanner.Wab.Controllers
                 {
                     abs.Document = abs.Document;
                 }
-                abs.AbsenceDate = new DateTime(year - 543, month, day);
+                abs.AbsenceDate = DateHelper.GetDate(new DateTime(year, month, day));
                 abs.Employee = db.EmployeeSet.Find(absence.EmployeeId);
                 abs.Remark = absence.Remark;
 

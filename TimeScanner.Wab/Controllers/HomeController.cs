@@ -10,7 +10,14 @@ namespace TimeScanner.Wab.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            if (User.Identity.IsAuthenticated)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Calendars");
+            }
         }
 
         public ActionResult About()
