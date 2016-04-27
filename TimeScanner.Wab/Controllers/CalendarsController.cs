@@ -38,7 +38,7 @@ namespace TimeScanner.Wab.Controllers
                         Date = date,
                         IsDayInMonth = isDayInMonth,
                         IsWorkingDay = selectedDate.IsWorkingDay,
-                        Note = selectedDate.Note,
+                        Note = selectedDate.Activity,
                         IsActivity = true
                     });
                 }

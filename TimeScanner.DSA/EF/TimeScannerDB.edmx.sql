@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 04/26/2016 22:48:43
--- Generated from EDMX file: C:\Users\joker\Documents\Git\timescan\TimeScanner.DSA\EF\TimeScannerDB.edmx
+-- Date Created: 04/27/2016 19:05:31
+-- Generated from EDMX file: C:\Users\AOYKII\Desktop\Project\Project\TimeScanner\TimeScanner.DSA\EF\TimeScannerDB.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;

@@ -1,6 +1,7 @@
 ﻿-- Creating table 'AbsenceSet'
 -- Creating table 'AbsenceSet'
 -- Creating table 'AbsenceSet'
+-- Creating table 'AbsenceSet'
 CREATE TABLE [dbo].[AbsenceSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [AbsenceDate] datetime  NOT NULL,
@@ -9,6 +10,7 @@ CREATE TABLE [dbo].[AbsenceSet] (
     [EmployeeId] int  NOT NULL
 );
 GO
+-- Creating foreign key on [EmployeeId] in table 'AbsenceSet'
 -- Creating foreign key on [EmployeeId] in table 'AbsenceSet'
 -- Creating foreign key on [EmployeeId] in table 'AbsenceSet'
 -- Creating foreign key on [EmployeeId] in table 'AbsenceSet'
@@ -22,10 +24,12 @@ GO
 -- Creating primary key on [Id] in table 'AbsenceSet'
 -- Creating primary key on [Id] in table 'AbsenceSet'
 -- Creating primary key on [Id] in table 'AbsenceSet'
+-- Creating primary key on [Id] in table 'AbsenceSet'
 ALTER TABLE [dbo].[AbsenceSet]
 ADD CONSTRAINT [PK_AbsenceSet]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
+-- Creating non-clustered index for FOREIGN KEY 'FK_EmployeeAbsence'
 -- Creating non-clustered index for FOREIGN KEY 'FK_EmployeeAbsence'
 -- Creating non-clustered index for FOREIGN KEY 'FK_EmployeeAbsence'
 -- Creating non-clustered index for FOREIGN KEY 'FK_EmployeeAbsence'

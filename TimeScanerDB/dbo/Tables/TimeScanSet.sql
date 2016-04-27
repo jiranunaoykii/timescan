@@ -13,6 +13,11 @@
 -- --------------------------------------------------
 
 -- Creating table 'TimeScanSet'
+-- --------------------------------------------------
+-- Creating all tables
+-- --------------------------------------------------
+
+-- Creating table 'TimeScanSet'
 CREATE TABLE [dbo].[TimeScanSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [TimeIn] datetime  NULL,
@@ -20,6 +25,11 @@ CREATE TABLE [dbo].[TimeScanSet] (
     [EmployeeId] int  NOT NULL
 );
 GO
+-- --------------------------------------------------
+-- Creating all FOREIGN KEY constraints
+-- --------------------------------------------------
+
+-- Creating foreign key on [EmployeeId] in table 'TimeScanSet'
 -- --------------------------------------------------
 -- Creating all FOREIGN KEY constraints
 -- --------------------------------------------------
@@ -57,10 +67,16 @@ GO
 -- --------------------------------------------------
 
 -- Creating primary key on [Id] in table 'TimeScanSet'
+-- --------------------------------------------------
+-- Creating all PRIMARY KEY constraints
+-- --------------------------------------------------
+
+-- Creating primary key on [Id] in table 'TimeScanSet'
 ALTER TABLE [dbo].[TimeScanSet]
 ADD CONSTRAINT [PK_TimeScanSet]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
+-- Creating non-clustered index for FOREIGN KEY 'FK_EmployeeTimeScan'
 -- Creating non-clustered index for FOREIGN KEY 'FK_EmployeeTimeScan'
 -- Creating non-clustered index for FOREIGN KEY 'FK_EmployeeTimeScan'
 -- Creating non-clustered index for FOREIGN KEY 'FK_EmployeeTimeScan'
