@@ -14,6 +14,7 @@ namespace TimeScanner.DSA.EF
         {
             public int Id { get; set; }
             [Display(Name = "วันที่ลา")]
+            [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
             public System.DateTime AbsenceDate { get; set; }
             [Display(Name = "เอกสาร")]
             public string Document { get; set; }

@@ -61,14 +61,14 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                        <li>@Html.ActionLink("หน้าแรก", "Index", "Home")</li>
-                        <li>@Html.ActionLink("จัดการพนักงาน", "Index", "Employees")</li>
-                        <li>@Html.ActionLink("บันทึกการลา", "", "Absences")</li>
-                        <li>@Html.ActionLink("รายงาน", "", "Report")</li>
-                    }                   
-                    <li>@Html.ActionLink("ปฏิทิน", "Index", "Calendars", new { id = string.Format("{0:dd-MM-yyyy}", DateTime.Now) }, null)</li>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    @*<li>@Html.ActionLink("หน้าแรก", "Index", "Home")</li>*@
+                    <li>@Html.ActionLink("จัดการพนักงาน", "Index", "Employees")</li>
+                    <li>@Html.ActionLink("บันทึกการลา", "", "Absences")</li>
+                    <li>@Html.ActionLink("รายงาน", "", "Report")</li>
+                }
+                    <li>@Html.ActionLink("ปฏิทิน", "Index", "Calendars", new { id = string.Format("{0:dd-MM-yyyy}", DateTime.Now) }, null)</li>                 
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

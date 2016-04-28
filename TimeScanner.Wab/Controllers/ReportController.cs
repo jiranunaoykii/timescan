@@ -5,9 +5,11 @@ using System.Web;
 using System.Web.Mvc;
 using TimeScanner.DSA.EF;
 using TimeScanner.Wab.Helpers;
+using TimeScanner.Wab.ViewModels;
 
 namespace TimeScanner.Wab.Controllers
 {
+    [Authorize]
     public class ReportController : Controller
     {
         private TimeScannerDBContainer db = new TimeScannerDBContainer();
@@ -21,79 +23,201 @@ namespace TimeScanner.Wab.Controllers
         public ActionResult Daily()
         {
             var date = DateTime.Today;
-            var employeeSet = db.EmployeeSet;
-            foreach (var item in employeeSet)
+            var employeeSet = db.EmployeeSet.ToList();
+            var absenceSet = db.AbsenceSet.ToList();
+            var timeScanSet = db.TimeScanSet.ToList();
+            var dailyReport = new List<DailyReport>();
+            var selectedAbsence = new Absence();
+            var selectedTimeScan = new TimeScan();
+            foreach (var emp in employeeSet)
             {
-                var ts = db.TimeScanSet.Where(x => x.EmployeeId == item.Id).ToList().Where(x => ((x.TimeIn.HasValue && x.TimeIn.Value.Date == date) || (x.TimeOut.HasValue && x.TimeOut.Value.Date == date)));
-                item.TimeScan = ts.Any() ? ts.FirstOrDefault() : new TimeScan();
-
-                var abs = db.AbsenceSet.Where(x => x.EmployeeId == item.Id).ToList().Where(x => x.AbsenceDate.Date == date);
-                item.Absence = abs.Any() ? abs.FirstOrDefault() : new Absence();
-            }
-            return View(employeeSet.ToList());
-        }
-
-        [HttpPost]
-        public ActionResult Daily(int day, int month, int year)
-        {
-            var date = DateHelper.GetDate(new DateTime(year, month, day));
-            var employeeSet = db.EmployeeSet;
-            foreach (var item in employeeSet)
-            {
-                var ts = db.TimeScanSet.Where(x => x.EmployeeId == item.Id).ToList().Where(x => ((x.TimeIn.HasValue && x.TimeIn.Value.Date == date) || (x.TimeOut.HasValue && x.TimeOut.Value.Date == date)));
-                item.TimeScan = ts.Any() ? ts.FirstOrDefault() : new TimeScan();
-
-                var abs = db.AbsenceSet.Where(x => x.EmployeeId == item.Id).ToList().Where(x => x.AbsenceDate.Date == date);
-                item.Absence = abs.Any() ? abs.FirstOrDefault() : new Absence();
-            }
-            return View(employeeSet.ToList());
-        }
-
-        public ActionResult Monthly(int? id)
-        {
-            if (!id.HasValue)
-            {
-                var emp = db.EmployeeSet.FirstOrDefault();
-                if (emp != null)
+                selectedAbsence = absenceSet.Where(it => it.EmployeeId == emp.Id && it.AbsenceDate.Day == date.Day && it.AbsenceDate.Month == date.Month && it.AbsenceDate.Year == date.Year).FirstOrDefault();
+                if (selectedAbsence != null)
                 {
-                    id = emp.Id;
+                    dailyReport.Add(new DailyReport
+                    {
+                        EmployeeCode = emp.EmployeeCode,
+                        TitleName = emp.TitleName,
+                        FirstName = emp.FirstName,
+                        LastName = emp.LastName,
+                        PID = emp.PID,
+                        IsAbsence = true,
+                        Remark = selectedAbsence.Remark,
+                        SearchDate = date
+                    });
                 }
                 else
                 {
-                    return RedirectToAction("index");
+                    selectedTimeScan = timeScanSet.Where(it => it.EmployeeId == emp.Id && (it.TimeIn.HasValue && it.TimeIn.Value.Day == date.Day && it.TimeIn.Value.Month == date.Month && it.TimeIn.Value.Year == date.Year)
+                    || (it.TimeOut.HasValue && it.TimeOut.Value.Day == date.Day && it.TimeOut.Value.Month == date.Month && it.TimeOut.Value.Year == date.Year)).FirstOrDefault();
+                    if (selectedTimeScan != null)
+                    {
+                        dailyReport.Add(new DailyReport
+                        {
+                            EmployeeCode = emp.EmployeeCode,
+                            TitleName = emp.TitleName,
+                            FirstName = emp.FirstName,
+                            LastName = emp.LastName,
+                            PID = emp.PID,
+                            TimeIn = selectedTimeScan.TimeIn,
+                            TimeOut = selectedTimeScan.TimeOut,
+                            IsAbsence = false,
+                            SearchDate = date
+                        });
+                    }
+                    else
+                    {
+                        dailyReport.Add(new DailyReport
+                        {
+                            EmployeeCode = emp.EmployeeCode,
+                            TitleName = emp.TitleName,
+                            FirstName = emp.FirstName,
+                            LastName = emp.LastName,
+                            PID = emp.PID,
+                            SearchDate = date
+                        });
+                    }
                 }
             }
+            return View(dailyReport.OrderBy(it => it.TimeIn));
+        }
 
-            var employee = db.EmployeeSet.Find(id.Value);
-            var date = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
-
-            var ts = db.TimeScanSet.Where(x => x.EmployeeId == employee.Id).ToList().Where(x => ((x.TimeIn.HasValue && x.TimeIn.Value.Date >= date && x.TimeIn.Value.Date < date.AddMonths(1))
-                || (x.TimeOut.HasValue && x.TimeOut.Value.Date >= date && x.TimeOut.Value.Date < date.AddMonths(1)))).ToList(); ;
-            var ts2 = Enumerable.Range(1, DateTime.Today.Day).Select(x =>
+        [HttpPost]
+        public ActionResult Daily(DateTime day)
+        {
+            if (day == null) RedirectToAction("Daily");
+            var date = DateHelper.GetDate(day);
+            var employeeSet = db.EmployeeSet.ToList();
+            var absenceSet = db.AbsenceSet.ToList();
+            var timeScanSet = db.TimeScanSet.ToList();
+            var dailyReport = new List<DailyReport>();
+            var selectedAbsence = new Absence();
+            var selectedTimeScan = new TimeScan();
+            foreach (var emp in employeeSet)
             {
-                var item = ts.FirstOrDefault(xx => (xx.TimeIn.HasValue && xx.TimeIn.Value.Day == x) || (xx.TimeOut.HasValue && xx.TimeOut.Value.Day == x));
-                if (item == null)
+                selectedAbsence = absenceSet.Where(it => it.EmployeeId == emp.Id && it.AbsenceDate.Day == date.Day && it.AbsenceDate.Month == date.Month && it.AbsenceDate.Year == date.Year).FirstOrDefault();
+                if (selectedAbsence != null)
                 {
-                    return new TimeScan();
+                    dailyReport.Add(new DailyReport
+                    {
+                        EmployeeCode = emp.EmployeeCode,
+                        TitleName = emp.TitleName,
+                        FirstName = emp.FirstName,
+                        LastName = emp.LastName,
+                        PID = emp.PID,
+                        IsAbsence = true,
+                        Remark = selectedAbsence.Remark,
+                        SearchDate = day
+                    });
                 }
-                return item;
-            }).ToList();
-
-            var abs = db.AbsenceSet.Where(x => x.EmployeeId == employee.Id).ToList().Where(x => x.AbsenceDate.Date >= date && x.AbsenceDate.Date < date.AddMonths(1));
-            var abs2 = Enumerable.Range(1, DateTime.Today.Day).Select(x => abs.FirstOrDefault(xx => xx.AbsenceDate.Day == x));
-
-            employee.Absemces = abs2.ToList();
-            int i = 0;
-            foreach (var item in ts2)
-            {
-                item.Status += item.TimeIn.HasValue ? "" : "[ไม่มีเวลาเข้างาน]";
-                item.Status += item.TimeOut.HasValue ? "" : "[ไม่มีเวลาออกงาน]";
-                item.Status += abs2.ElementAt(i) == null ? "" : "[ลางาน]";
-                item.Status += abs2.ElementAt(i) == null && item.TimeIn.HasValue ? "" : "[ขาด]";
-                i++;
+                else
+                {
+                    selectedTimeScan = timeScanSet.Where(it => it.EmployeeId == emp.Id && ((it.TimeIn.HasValue && it.TimeIn.Value.Day == date.Day && it.TimeIn.Value.Month == date.Month && it.TimeIn.Value.Year == date.Year)
+                    || (it.TimeOut.HasValue && it.TimeOut.Value.Day == date.Day && it.TimeOut.Value.Month == date.Month && it.TimeOut.Value.Year == date.Year))).FirstOrDefault();
+                    if (selectedTimeScan != null)
+                    {
+                        dailyReport.Add(new DailyReport
+                        {
+                            EmployeeCode = emp.EmployeeCode,
+                            TitleName = emp.TitleName,
+                            FirstName = emp.FirstName,
+                            LastName = emp.LastName,
+                            PID = emp.PID,
+                            TimeIn = selectedTimeScan.TimeIn,
+                            TimeOut = selectedTimeScan.TimeOut,
+                            IsAbsence = false,
+                            SearchDate = day
+                        });
+                    }
+                    else
+                    {
+                        dailyReport.Add(new DailyReport
+                        {
+                            EmployeeCode = emp.EmployeeCode,
+                            TitleName = emp.TitleName,
+                            FirstName = emp.FirstName,
+                            LastName = emp.LastName,
+                            PID = emp.PID,
+                            SearchDate = day
+                        });
+                    }
+                }
             }
-            employee.TimeScans = ts2.ToList();
-            return View(employee);
+            return View(dailyReport.OrderBy(it => it.TimeIn));
+        }
+
+
+        public ActionResult Monthly(string id, int? month, int? year)
+        {
+            if(id == null || month == null || year == null) return View(new List<DailyReport>());
+            if(year > 2500) year -= 543;
+            var dayOfMonth = GetDates(year.Value, month.Value);
+            var emp = db.EmployeeSet.FirstOrDefault(it => it.EmployeeCode == id);
+            if(emp == null) return View(new List<DailyReport>());
+            var absenceSet = db.AbsenceSet.ToList();
+            var timeScanSet = db.TimeScanSet.ToList();
+            var dailyReport = new List<DailyReport>();
+            var selectedAbsence = new Absence();
+            var selectedTimeScan = new TimeScan();
+            foreach (var day in dayOfMonth.Where(it => it.DayOfWeek != DayOfWeek.Sunday && it.DayOfWeek != DayOfWeek.Saturday))
+            {
+                selectedAbsence = absenceSet.Where(it => it.EmployeeId == emp.Id && it.AbsenceDate.Day == day.Day && it.AbsenceDate.Month == day.Month && it.AbsenceDate.Year == day.Year).FirstOrDefault();
+                if (selectedAbsence != null)
+                {
+                    dailyReport.Add(new DailyReport
+                    {
+                        EmployeeCode = emp.EmployeeCode,
+                        TitleName = emp.TitleName,
+                        FirstName = emp.FirstName,
+                        LastName = emp.LastName,
+                        PID = emp.PID,
+                        IsAbsence = true,
+                        Remark = selectedAbsence.Remark,
+                        SearchDate = day
+                    });
+                }
+                else
+                {
+                    selectedTimeScan = timeScanSet.Where(it => it.EmployeeId == emp.Id && (it.TimeIn.HasValue && it.TimeIn.Value.Day == day.Day && it.TimeIn.HasValue && it.TimeIn.Value.Month == day.Month && it.TimeIn.Value.Year == day.Year)
+                    || (it.TimeOut.HasValue &&  it.TimeOut.Value.Day == day.Day &&  it.TimeOut.Value.Month == day.Month && it.TimeOut.Value.Year == day.Year)).FirstOrDefault();
+                    if (selectedTimeScan != null)
+                    {
+                        dailyReport.Add(new DailyReport
+                        {
+                            EmployeeCode = emp.EmployeeCode,
+                            TitleName = emp.TitleName,
+                            FirstName = emp.FirstName,
+                            LastName = emp.LastName,
+                            PID = emp.PID,
+                            TimeIn = selectedTimeScan.TimeIn,
+                            TimeOut = selectedTimeScan.TimeOut,
+                            IsAbsence = false,
+                            SearchDate = day
+                        });
+                    }
+                    else
+                    {
+                        dailyReport.Add(new DailyReport
+                        {
+                            EmployeeCode = emp.EmployeeCode,
+                            TitleName = emp.TitleName,
+                            FirstName = emp.FirstName,
+                            LastName = emp.LastName,
+                            PID = emp.PID,
+                            SearchDate = day
+                        });
+                    }
+                }
+            }
+            
+            return View(dailyReport.OrderBy(it => it.TimeIn));
+        }
+
+        private List<DateTime> GetDates(int year, int month)
+        {
+            return Enumerable.Range(1, DateTime.DaysInMonth(year, month))  // Days: 1, 2 ... 31 etc.
+                             .Select(day => new DateTime(year, month, day)) // Map each day to a date
+                             .ToList(); // Load dates into a list
         }
     }
 }

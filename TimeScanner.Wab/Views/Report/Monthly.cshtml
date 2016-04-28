@@ -1,35 +1,64 @@
-﻿@model TimeScanner.DSA.EF.Employee
+﻿@model IEnumerable<TimeScanner.Wab.ViewModels.DailyReport>
 
 @{
     ViewBag.Title = "Monthly";
-    int i = 1;
 }
 
 <h2>Monthly</h2>
 
-
+<form method="post">
+    รหัสพนักงาน<input name="id" type="text" value="" class="form-control"/>
+    เดือน<select name="month" class="form-control">
+        @for (int i = 1; i <= 12; i++)
+        {
+            @Html.Raw("<option value='" + i + "'>" + new DateTime(DateTime.Now.Year, i, 1).ToString("MMMM", System.Globalization.CultureInfo.GetCultureInfo("th-TH")) + "</option>")
+        }
+    </select>
+    ปี<select name="year" class="form-control">
+        @for (int i = DateTime.Now.Year + 543; i > DateTime.Now.Year + 523; i--)
+        {
+            @Html.Raw("<option>" + i + "</option>")
+        }
+    </select>
+    <input type="submit" class="btn btn-primary" value="แสดง"/>
+</form>
+<br />
 <table class="table">
     <tr>
         <th>
             วันที่
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TimeScan.TimeIn)
+            รหัสพนักงาน
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TimeScan.TimeOut)
+            ชื่อ-นามสกุล
+        </th>
+        <td>
+            เวลาเข้างาน
+        </td>
+        <th>
+            เวลาออกงาน
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TimeScan.Status)
+            สถานะ
         </th>
-        <th></th>
+        <th>
+            หมายเหตุ
+        </th>
     </tr>
 
-    @foreach (var item in Model.TimeScans)
+    @foreach (var item in Model)
     {
         <tr>
             <td>
-                @(new DateTime(DateTime.Today.Year, DateTime.Today.Month, i))
+                @item.SearchDate.ToString("dd MMMM yyyy", System.Globalization.CultureInfo.GetCultureInfo("th-TH"))
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmployeeCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FullName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.TimeIn)
@@ -40,8 +69,10 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Status)
             </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Remark)
+            </td>
         </tr>
-        i++;
     }
 
 </table>

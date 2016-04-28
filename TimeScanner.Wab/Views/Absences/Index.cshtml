@@ -4,32 +4,19 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>บันทึกการลา</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("เพิ่มการลา", "Create")
 </p>
 <form method="post">
-    <select name="day" class="form-control">
-        @for (int i = 1; i <= 31; i++)
-        {
-            @Html.Raw("<option>" + i + "</option>")
-        }
-    </select>
-    <select name="month" class="form-control">
-        @for (int i = 1; i <= 12; i++)
-        {
-            @Html.Raw("<option value='" + i + "'>" + new DateTime(DateTime.Now.Year, i, 1).ToString("MMMM", System.Globalization.CultureInfo.GetCultureInfo("th-TH")) + "</option>")
-        }
-    </select>
-    <select name="year" class="form-control">
-        @for (int i = DateTime.Now.Year + 543; i > DateTime.Now.Year + 523; i--)
-        {
-            @Html.Raw("<option>" + i + "</option>")
-        }
-    </select>
-    <input type="submit" class="btn btn-primary" />
+    วันที่
+    <input name="day" class="form-control datepicker" id="day" type="date" value="@string.Format("{0:dd/MM/yyyy}", DateTime.Today)">
+    <br />
+    <input type="submit" class="btn btn-primary" value="แสดง" />
 </form>
+<br />
+<br />
 <table class="table">
     <tr>
         <th>
@@ -51,7 +38,7 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.AbsenceDate)
+                @item.AbsenceDate.ToString("dd MMMM yyyy", System.Globalization.CultureInfo.GetCultureInfo("th-TH"))
             </td>
             <td>
                 <a href='http://localhost/Documents/@item.Document'>@item.Document</a>

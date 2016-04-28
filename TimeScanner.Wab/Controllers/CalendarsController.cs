@@ -11,11 +11,13 @@ using TimeScanner.Wab.Helpers;
 
 namespace TimeScanner.Wab.Controllers
 {
+    [Authorize]
     public class CalendarsController : Controller
     {
         private TimeScannerDBContainer db = new TimeScannerDBContainer();
 
         // GET: Calendars
+        [AllowAnonymous]
         public ActionResult Index(string id)
         {
             var now = id == null ? DateTime.Now : DateTime.Parse(id);
@@ -35,6 +37,7 @@ namespace TimeScanner.Wab.Controllers
                 {                  
                     calendars.Days.Add(new ViewModels.DayofMonth
                     {
+                        Id = selectedDate.Id,
                         Date = date,
                         IsDayInMonth = isDayInMonth,
                         IsWorkingDay = selectedDate.IsWorkingDay,
@@ -57,6 +60,7 @@ namespace TimeScanner.Wab.Controllers
         }
 
         // GET: Calendars/Details/5
+        [AllowAnonymous]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -68,7 +72,16 @@ namespace TimeScanner.Wab.Controllers
             {
                 return HttpNotFound();
             }
-            return View(calendar);
+            return View(new ViewModels.Calendar
+            {
+                 Id = calendar.Id,
+                 Activity = calendar.Activity,
+                 IsWorkingDay = calendar.IsWorkingDay? "ทำงาน" : "หยุด",
+                 StartTime = calendar.StartTime,
+                 EndTime = calendar.EndTime,
+                 IssueDate = calendar.IssueDate,
+                 Note = calendar.Note
+            });
         }
 
         // GET: Calendars/Create
@@ -115,7 +128,16 @@ namespace TimeScanner.Wab.Controllers
             {
                 return HttpNotFound();
             }
-            return View(calendar);
+            return View(new ViewModels.Calendar
+            {
+                Id = calendar.Id,
+                Activity = calendar.Activity,
+                IsWorkingDay = calendar.IsWorkingDay ? "ทำงาน" : "หยุด",
+                StartTime = calendar.StartTime,
+                EndTime = calendar.EndTime,
+                IssueDate = calendar.IssueDate,
+                Note = calendar.Note
+            });
         }
 
         // POST: Calendars/Edit/5
@@ -123,15 +145,20 @@ namespace TimeScanner.Wab.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,IssueDate,Activity,StartTime,EndTime")] Calendar calendar)
+        public ActionResult Edit(ViewModels.Calendar calendar)
         {
-            if (ModelState.IsValid)
+            db.Entry(new Calendar
             {
-                db.Entry(calendar).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(calendar);
+                Id = calendar.Id,
+                Activity = calendar.Activity,
+                IssueDate = DateHelper.GetDate(calendar.IssueDate),
+                IsWorkingDay = calendar.IsWorkingDay == "ทำงาน" ? true : false,
+                Note = calendar.Note,
+                StartTime = new DateTime(calendar.StartTime.Year, calendar.StartTime.Month, calendar.StartTime.Day, calendar.StartTime.Hour, calendar.StartTime.Minute, calendar.StartTime.Second),
+                EndTime = new DateTime(calendar.EndTime.Year, calendar.EndTime.Month, calendar.EndTime.Day, calendar.EndTime.Hour, calendar.EndTime.Minute, calendar.EndTime.Second),
+            }).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Details", new { id = calendar.Id});
         }
 
         // GET: Calendars/Delete/5

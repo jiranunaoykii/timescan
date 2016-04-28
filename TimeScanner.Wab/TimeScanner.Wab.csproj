@@ -241,6 +241,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\Calendar.cs" />
     <Compile Include="ViewModels\Calendars.cs" />
+    <Compile Include="ViewModels\DailyReport.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />

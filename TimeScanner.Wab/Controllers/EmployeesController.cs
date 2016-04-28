@@ -10,6 +10,7 @@ using TimeScanner.DSA.EF;
 
 namespace TimeScanner.Wab.Controllers
 {
+    [Authorize]
     public class EmployeesController : Controller
     {
         private TimeScannerDBContainer db = new TimeScannerDBContainer();

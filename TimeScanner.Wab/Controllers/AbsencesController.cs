@@ -11,6 +11,7 @@ using TimeScanner.Wab.Helpers;
 
 namespace TimeScanner.Wab.Controllers
 {
+    [Authorize]
     public class AbsencesController : Controller
     {
         private TimeScannerDBContainer db = new TimeScannerDBContainer();
@@ -24,10 +25,10 @@ namespace TimeScanner.Wab.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(int day, int month, int year)
+        public ActionResult Index(DateTime day)
         {
-            var date = DateHelper.GetDate(new DateTime(year, month, day));
-            var absenceSet = db.AbsenceSet.ToList().Where(x => x.AbsenceDate.Date == date);
+            var date = DateHelper.GetDate(day);
+            var absenceSet = db.AbsenceSet.ToList().Where(x => x.AbsenceDate.Date.Day == date.Day && x.AbsenceDate.Date.Month == date.Month && x.AbsenceDate.Date.Year == date.Year);
             return View(absenceSet.ToList());
         }
 
@@ -61,7 +62,7 @@ namespace TimeScanner.Wab.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,AbsenceDate,Document,Remark,EmployeeId")] Absence absence, int day, int month, int year, HttpPostedFileBase document)
+        public ActionResult Create([Bind(Include = "Id,AbsenceDate,Document,Remark,EmployeeId")] Absence absence, DateTime day, HttpPostedFileBase document)
         {
             if (ModelState.IsValid)
             {
@@ -70,7 +71,7 @@ namespace TimeScanner.Wab.Controllers
                     document.SaveAs(System.IO.Path.Combine(@"C:\inetpub\wwwroot\Documents", System.IO.Path.GetFileName(document.FileName)));
                     absence.Document = System.IO.Path.GetFileName(document.FileName);
                 }
-                absence.AbsenceDate = DateHelper.GetDate(new DateTime(year, month, day));
+                absence.AbsenceDate = DateHelper.GetDate(day);
 
                 db.AbsenceSet.Add(absence);
                 db.SaveChanges();
@@ -106,7 +107,7 @@ namespace TimeScanner.Wab.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,AbsenceDate,Document,Remark,EmployeeId")] Absence absence, int day, int month, int year, HttpPostedFileBase document)
+        public ActionResult Edit([Bind(Include = "Id,AbsenceDate,Document,Remark,EmployeeId")] Absence absence,  HttpPostedFileBase document)
         {
             if (ModelState.IsValid)
             {
@@ -120,7 +121,7 @@ namespace TimeScanner.Wab.Controllers
                 {
                     abs.Document = abs.Document;
                 }
-                abs.AbsenceDate = DateHelper.GetDate(new DateTime(year, month, day));
+                abs.AbsenceDate = DateHelper.GetDate(absence.AbsenceDate);
                 abs.Employee = db.EmployeeSet.Find(absence.EmployeeId);
                 abs.Remark = absence.Remark;
 

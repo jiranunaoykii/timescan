@@ -20,26 +20,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.AbsenceDate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <select name="day" class="form-control">
-                    @for (int i = 1; i <= 31; i++)
-                    {
-                        @Html.Raw("<option " + (Model.AbsenceDate.Day == i ? "selected" : "") + ">" + i + "</option>")
-                    }
-                </select>
-                <select name="month" class="form-control">
-                    @for (int i = 1; i <= 12; i++)
-                    {
-                        @Html.Raw("<option " + (Model.AbsenceDate.Month == i ? "selected" : "") + " value='" + i + "'>" + new DateTime(DateTime.Now.Year, i, 1).ToString("MMMM", System.Globalization.CultureInfo.GetCultureInfo("th-TH")) + "</option>")
-                    }
-                </select>
-                <select name="year" class="form-control">
-                    @for (int i = DateTime.Now.Year + 543; i > DateTime.Now.Year + 523; i--)
-                    {
-                        @Html.Raw("<option " + (Model.AbsenceDate.Year == i ? "selected" : "") + ">" + i + "</option>")
-                    }
-                </select>
-                @*@Html.EditorFor(model => model.AbsenceDate, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.AbsenceDate, "", new { @class = "text-danger" })*@
+                @Html.EditorFor(model => model.AbsenceDate, new { htmlAttributes = new { @class = "form-control datepicker date" } })
             </div>
         </div>
 

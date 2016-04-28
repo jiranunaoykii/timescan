@@ -20,6 +20,7 @@ namespace TimeScanner.Wab.ViewModels
     }
     public class DayofMonth
     {
+        public int Id { get; set; }
         public bool IsActivity { get; set; }
         public bool IsWorkingDay { get; set; }
         public bool IsDayInMonth { get; set; }

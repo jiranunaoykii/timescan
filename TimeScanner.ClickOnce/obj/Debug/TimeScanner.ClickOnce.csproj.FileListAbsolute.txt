@@ -212,7 +212,6 @@ C:\Users\joker\Documents\Git\timescan\TimeScanner.ClickOnce\bin\Debug\System.Net
 C:\Users\joker\Documents\Git\timescan\TimeScanner.ClickOnce\bin\Debug\Newtonsoft.Json.xml
 C:\Users\joker\Documents\Git\timescan\TimeScanner.ClickOnce\bin\Debug\System.Web.WebPages.Deployment.xml
 C:\Users\joker\Documents\Git\timescan\TimeScanner.ClickOnce\obj\Debug\TimeScanner.ClickOnce.csprojResolveAssemblyReference.cache
-C:\Users\joker\Documents\Git\timescan\TimeScanner.ClickOnce\obj\Debug\TimeScanner.ClickOnce.csproj.TimeScanner.ClickOnce.exe.config
 C:\Users\joker\Documents\Git\timescan\TimeScanner.ClickOnce\obj\Debug\TimeScanner.ClickOnce.Form1.resources
 C:\Users\joker\Documents\Git\timescan\TimeScanner.ClickOnce\obj\Debug\TimeScanner.ClickOnce.Properties.Resources.resources
 C:\Users\joker\Documents\Git\timescan\TimeScanner.ClickOnce\obj\Debug\TimeScanner.ClickOnce.csproj.GenerateResource.Cache
@@ -297,3 +296,8 @@ C:\Users\AOYKII\Desktop\Project\Project\TimeScanner\TimeScanner.ClickOnce\obj\De
 C:\Users\AOYKII\Desktop\Project\Project\TimeScanner\TimeScanner.ClickOnce\obj\Debug\TimeScanner.ClickOnce.exe.manifest
 C:\Users\AOYKII\Desktop\Project\Project\TimeScanner\TimeScanner.ClickOnce\obj\Debug\TimeScanner.ClickOnce.application
 C:\Users\AOYKII\Desktop\Project\Project\TimeScanner\TimeScanner.ClickOnce\obj\Debug\TimeScanner.ClickOnce.pdb
+C:\Users\joker\Documents\Git\timescan\TimeScanner.ClickOnce\bin\Debug\WebGrease.dll
+C:\Users\joker\Documents\Git\timescan\TimeScanner.ClickOnce\bin\Debug\Microsoft.Owin.Security.OAuth.dll
+C:\Users\joker\Documents\Git\timescan\TimeScanner.ClickOnce\bin\Debug\Antlr3.Runtime.dll
+C:\Users\joker\Documents\Git\timescan\TimeScanner.ClickOnce\bin\Debug\Microsoft.Owin.Security.OAuth.xml
+C:\Users\joker\Documents\Git\timescan\TimeScanner.ClickOnce\bin\Debug\Antlr3.Runtime.pdb
