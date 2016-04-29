@@ -1,1 +1,0 @@
-﻿<%@ ServiceHost Language="C#" Debug="true" Service="TimeScanner.Wab.Services.CardReaderService" CodeBehind="CardReaderService.svc.cs" %>
