@@ -13,12 +13,16 @@ namespace TimeScanner.DSA.EF
         private class MD
         {
             public int Id { get; set; }
+            [Display(Name = "เข้างาน")]
             public Nullable<System.DateTime> TimeIn { get; set; }
+            [Display(Name = "ออกงาน")]
             public Nullable<System.DateTime> TimeOut { get; set; }
+            [Display(Name = "รหัสพนักงาน")]
             public int EmployeeId { get; set; }
 
             public virtual Employee Employee { get; set; }
         }
+        [Display(Name = "สถานะ")]
         public string Status { get; set; }
     }
 }

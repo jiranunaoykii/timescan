@@ -19,7 +19,7 @@ namespace TimeScanner.DSA.EF
             public string Document { get; set; }
             [Display(Name = "หมายเหตุ")]
             public string Remark { get; set; }
-            [Display(Name = "รหัสพนักงาน")]
+            
             public int EmployeeId { get; set; }
 
             public virtual Employee Employee { get; set; }
